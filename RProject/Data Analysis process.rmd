@@ -1,0 +1,346 @@
+---
+title: "Bike share Case Study"
+author: "Bruno Schwartz"
+date: "2024-02-07"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Prepare
+
+### Libraries
+
+```{r}
+#tinytex::install_tinytex()
+```
+
+
+```{r}
+#install.packages("tidyr")
+#install.packages("readr")
+#install.packages("dplyr")
+#install.packages("lubridate")
+#install.packages("skimr")
+#install.packages("LaTeX")
+```
+
+```{r}
+library(tidyr)
+library(readr)
+#library(janitor)
+library(dplyr)
+library(lubridate)
+library(skimr)
+library(ggplot2)
+```
+
+### Read the dataset
+
+```{r}
+Q12019 <- read_csv("Dataset/Divvy_Trips_2019_Q1.csv")
+Q22019 <- read_csv("Dataset/Divvy_Trips_2019_Q2.csv")
+Q32019 <- read_csv("Dataset/Divvy_Trips_2019_Q3.csv")
+Q42019 <- read_csv("Dataset/Divvy_Trips_2019_Q4.csv")
+Q12020 <- read_csv("Dataset/Divvy_Trips_2020_Q1.csv")
+```
+
+```{r}
+str(Q12019)
+```
+
+```{r}
+glimpse(Q12019)
+glimpse(Q42019)
+```
+
+```{r}
+glimpse(Q22019)
+glimpse(Q32019)
+```
+
+
+```{r}
+head(Q22019)
+```
+
+### Rename of columns
+
+```{r}
+# Conversion to date time datatype
+colnames(Q12019)
+colnames(Q22019)
+colnames(Q32019)
+colnames(Q42019)
+colnames(Q12020)
+```
+
+```{r}
+Q22019 <- Q22019 %>% 
+  rename(
+    trip_id = "01 - Rental Details Rental ID",
+    start_time = "01 - Rental Details Local Start Time",
+    end_time = "01 - Rental Details Local End Time",
+    bikeid = "01 - Rental Details Bike ID",
+    tripduration = "01 - Rental Details Duration In Seconds Uncapped",
+    from_station_id = "03 - Rental Start Station ID",
+    from_station_name = "03 - Rental Start Station Name",
+    to_station_id = "02 - Rental End Station ID",
+    to_station_name = "02 - Rental End Station Name",
+    usertype = "User Type",
+    gender = "Member Gender",
+    birthyear = "05 - Member Details Member Birthday Year"
+    )
+```
+
+```{r}
+colnames(Q22019)
+```
+```{r}
+Q12020 <- Q12020 %>% 
+  rename(
+    trip_id = ride_id,
+    start_time = started_at,
+    end_time = ended_at,
+    from_station_id = start_station_id,
+    from_station_name = start_station_name,
+    to_station_id = end_station_id,
+    to_station_name = end_station_name,
+    usertype = member_casual
+    )
+```
+
+```{r}
+colnames(Q12020)
+```
+
+### Conversion of data to datetime
+
+```{r}
+# Conversion to date time datatype
+Q12019$start_time <- mdy_hm(Q12019$start_time)
+Q12019$end_time <- mdy_hm(Q12019$end_time)
+```
+
+### Analyze the columns
+
+```{r}
+# Gives us a pretty comprehensive summary of a dataset.
+#skim_without_charts(Q12019)
+skim(Q12019)
+```
+
+### Combine the dataframes in one
+
+```{r}
+# Remove columns
+Q12020 <- Q12020 %>%
+  select(-rideable_type, -start_lat, -start_lng, -end_lat, -end_lng)
+Q12019 <- Q12019 %>%
+  select(-bikeid)
+Q22019 <- Q22019 %>%
+  select(-bikeid)
+Q32019 <- Q32019 %>%
+  select(-bikeid)
+Q42019 <- Q42019 %>%
+  select(-bikeid)
+```
+
+
+```{r}
+# Add columns
+Q12020$gender = NA
+Q12020$birthyear = NA
+#Calculate the value of the trip duration
+Q12020 <- Q12020 %>% 
+  mutate(tripduration = as.numeric(difftime(end_time, start_time, units = "secs")))
+```
+
+```{r}
+# Merge the dataframes
+Cyclistic <- rbind(Q12019, Q22019, Q32019, Q42019, Q12020)
+```
+
+
+## Process
+
+```{r}
+glimpse(Cyclistic)
+```
+
+### Assess the trip duration variable:
+
+```{r}
+#Check negative values
+Cyclistic %>%
+  filter(tripduration<0)
+```
+
+```{r}
+#Check empty values
+Cyclistic %>%
+  filter(tripduration=NA)
+```
+
+Remove the negative values of the tripduration column
+```{r}
+Cyclistic <- Cyclistic %>%
+  filter(tripduration>=0)
+```
+
+
+### Calculate the weekday: day_of_week
+
+```{r}
+head(weekdays(Cyclistic$start_time))
+```
+
+```{r}
+Cyclistic <- Cyclistic %>% 
+  mutate(day_of_week = weekdays(start_time))
+```
+
+```{r}
+head(Cyclistic)
+```
+
+
+### Calculate the starting hour: start_hour
+
+```{r}
+head(hour(Cyclistic$start_time),50)
+head(Cyclistic$start_time,50)
+```
+
+```{r}
+Cyclistic <- Cyclistic %>% 
+  mutate(start_hour = hour(start_time))
+```
+
+```{r}
+Cyclistic %>%
+  select (start_time, start_hour)
+```
+
+### Replace the values of column usertype
+
+```{r}
+unique(Cyclistic$usertype)
+```
+
+```{r}
+Cyclistic$usertype[Cyclistic$usertype == "member"] <- "Subscriber"
+Cyclistic$usertype[Cyclistic$usertype == "casual"] <- "Customer"
+```
+
+```{r}
+unique(Cyclistic$usertype)
+```
+
+## Analyze
+
+```{r}
+skim(Cyclistic)
+```
+
+Unusual ride_length values (excessively high):
+```{r}
+Cyclistic %>%
+  filter(tripduration/3600 > 1000)
+```
+
+### Number of rides per day and usertype 
+
+```{r}
+Cyclistic$day_of_week <- factor(Cyclistic$day_of_week, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+ggplot(Cyclistic, aes(x=day_of_week, fill=usertype)) + 
+  geom_bar(position="dodge") +
+  labs(x="Day of the week", y="Number of rides") + 
+  scale_y_continuous(label=scales::comma)
+```
+
+### Average trip duration (in hours) per usertype
+
+```{r}
+Cyclistic_filtered <- Cyclistic %>%
+  select(start_time, usertype, tripduration, day_of_week)
+# Convert the variable from Datetime to Date
+Cyclistic_filtered$start_time <- as.Date(Cyclistic_filtered$start_time)
+```
+
+```{r}
+Cyclistic_Subscriber <- Cyclistic_filtered %>%
+  filter(usertype=="Subscriber") %>%
+  group_by(start_time, usertype, day_of_week) %>%
+  summarise(mean_tripduration = mean(tripduration)/3600)
+```
+
+```{r}
+Cyclistic_Customer <- Cyclistic_filtered %>%
+  filter(usertype=="Customer") %>%
+  group_by(start_time, usertype, day_of_week) %>%
+  summarise(mean_tripduration = mean(tripduration)/3600)
+```
+
+```{r}
+ggplot(Cyclistic_Subscriber, aes(x=start_time, y=mean_tripduration)) + 
+  geom_line() +
+  labs(x="Date", y="Average trip duration (in hours)")
+```
+
+```{r}
+ggplot(Cyclistic_Customer, aes(x=start_time, y=mean_tripduration)) + 
+  geom_line() +
+  labs(x="Date", y="Average trip duration (in hours)")
+```
+
+```{r}
+Cyclistic_filtered <- Cyclistic %>%
+  select(usertype, tripduration, day_of_week)
+```
+
+```{r}
+Cyclistic_day_Subscriber <- Cyclistic_filtered %>%
+  filter(usertype=="Subscriber") %>%
+  group_by(day_of_week) %>%
+  summarise(mean_tripduration = mean(tripduration)/3600)
+```
+
+```{r}
+Cyclistic_day_Customer <- Cyclistic_filtered %>%
+  filter(usertype=="Customer") %>%
+  group_by(day_of_week) %>%
+  summarise(mean_tripduration = mean(tripduration)/3600)
+```
+
+```{r}
+Cyclistic_day_Subscriber
+```
+
+```{r}
+Cyclistic_day_Customer
+```
+
+### Number of rides per hour and usertype 
+
+```{r}
+ggplot(Cyclistic, aes(x=start_hour, fill=usertype)) + 
+  geom_bar(position="dodge") +
+  labs(x="Starting hour", y="Number of rides") + 
+  scale_y_continuous(label=scales::comma)
+```
+
+
+
+```{r}
+ggplot(Cyclistic, aes(x=start_hour, fill=usertype)) + 
+  geom_bar(position="dodge") +
+  facet_wrap(~day_of_week) +
+  labs(x="Starting hour", y="Number of rides") + 
+  scale_y_continuous(label=scales::comma)
+```

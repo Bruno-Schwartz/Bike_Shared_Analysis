@@ -1,0 +1,1429 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Bike share Case Study},
+  pdfauthor={Bruno Schwartz},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Bike share Case Study}
+\author{Bruno Schwartz}
+\date{2024-02-07}
+
+\begin{document}
+\maketitle
+
+\hypertarget{prepare}{%
+\subsection{Prepare}\label{prepare}}
+
+\hypertarget{libraries}{%
+\subsubsection{Libraries}\label{libraries}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#tinytex::install\_tinytex()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("tidyr")}
+\CommentTok{\#install.packages("readr")}
+\CommentTok{\#install.packages("dplyr")}
+\CommentTok{\#install.packages("lubridate")}
+\CommentTok{\#install.packages("skimr")}
+\CommentTok{\#install.packages("LaTeX")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'readr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#library(janitor)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'lubridate' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(skimr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'skimr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.2.3
+\end{verbatim}
+
+\hypertarget{read-the-dataset}{%
+\subsubsection{Read the dataset}\label{read-the-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q12019 }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Dataset/Divvy\_Trips\_2019\_Q1.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 365069 Columns: 12
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (6): start_time, end_time, from_station_name, to_station_name, usertype,...
+## dbl (5): trip_id, bikeid, from_station_id, to_station_id, birthyear
+## num (1): tripduration
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q22019 }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Dataset/Divvy\_Trips\_2019\_Q2.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1108163 Columns: 12
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (4): 03 - Rental Start Station Name, 02 - Rental End Station Name, User...
+## dbl  (5): 01 - Rental Details Rental ID, 01 - Rental Details Bike ID, 03 - R...
+## num  (1): 01 - Rental Details Duration In Seconds Uncapped
+## dttm (2): 01 - Rental Details Local Start Time, 01 - Rental Details Local En...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q32019 }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Dataset/Divvy\_Trips\_2019\_Q3.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1640718 Columns: 12
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (4): from_station_name, to_station_name, usertype, gender
+## dbl  (5): trip_id, bikeid, from_station_id, to_station_id, birthyear
+## num  (1): tripduration
+## dttm (2): start_time, end_time
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q42019 }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Dataset/Divvy\_Trips\_2019\_Q4.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 704054 Columns: 12
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (4): from_station_name, to_station_name, usertype, gender
+## dbl  (5): trip_id, bikeid, from_station_id, to_station_id, birthyear
+## num  (1): tripduration
+## dttm (2): start_time, end_time
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q12020 }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Dataset/Divvy\_Trips\_2020\_Q1.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 426887 Columns: 13
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (5): ride_id, rideable_type, start_station_name, end_station_name, memb...
+## dbl  (6): start_station_id, end_station_id, start_lat, start_lng, end_lat, e...
+## dttm (2): started_at, ended_at
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(Q12019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spc_tbl_ [365,069 x 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ trip_id          : num [1:365069] 21742443 21742444 21742445 21742446 21742447 ...
+##  $ start_time       : chr [1:365069] "01/01/2019 0:04" "01/01/2019 0:08" "01/01/2019 0:13" "01/01/2019 0:13" ...
+##  $ end_time         : chr [1:365069] "01/01/2019 0:11" "01/01/2019 0:15" "01/01/2019 0:27" "01/01/2019 0:43" ...
+##  $ bikeid           : num [1:365069] 2167 4386 1524 252 1170 ...
+##  $ tripduration     : num [1:365069] 390 441 829 1783 364 ...
+##  $ from_station_id  : num [1:365069] 199 44 15 123 173 98 98 211 150 268 ...
+##  $ from_station_name: chr [1:365069] "Wabash Ave & Grand Ave" "State St & Randolph St" "Racine Ave & 18th St" "California Ave & Milwaukee Ave" ...
+##  $ to_station_id    : num [1:365069] 84 624 644 176 35 49 49 142 148 141 ...
+##  $ to_station_name  : chr [1:365069] "Milwaukee Ave & Grand Ave" "Dearborn St & Van Buren St (*)" "Western Ave & Fillmore St (*)" "Clark St & Elm St" ...
+##  $ usertype         : chr [1:365069] "Subscriber" "Subscriber" "Subscriber" "Subscriber" ...
+##  $ gender           : chr [1:365069] "Male" "Female" "Female" "Male" ...
+##  $ birthyear        : num [1:365069] 1989 1990 1994 1993 1994 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   trip_id = col_double(),
+##   ..   start_time = col_character(),
+##   ..   end_time = col_character(),
+##   ..   bikeid = col_double(),
+##   ..   tripduration = col_number(),
+##   ..   from_station_id = col_double(),
+##   ..   from_station_name = col_character(),
+##   ..   to_station_id = col_double(),
+##   ..   to_station_name = col_character(),
+##   ..   usertype = col_character(),
+##   ..   gender = col_character(),
+##   ..   birthyear = col_double()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(Q12019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 365,069
+## Columns: 12
+## $ trip_id           <dbl> 21742443, 21742444, 21742445, 21742446, 21742447, 21~
+## $ start_time        <chr> "01/01/2019 0:04", "01/01/2019 0:08", "01/01/2019 0:~
+## $ end_time          <chr> "01/01/2019 0:11", "01/01/2019 0:15", "01/01/2019 0:~
+## $ bikeid            <dbl> 2167, 4386, 1524, 252, 1170, 2437, 2708, 2796, 6205,~
+## $ tripduration      <dbl> 390, 441, 829, 1783, 364, 216, 177, 100, 1727, 336, ~
+## $ from_station_id   <dbl> 199, 44, 15, 123, 173, 98, 98, 211, 150, 268, 299, 2~
+## $ from_station_name <chr> "Wabash Ave & Grand Ave", "State St & Randolph St", ~
+## $ to_station_id     <dbl> 84, 624, 644, 176, 35, 49, 49, 142, 148, 141, 295, 4~
+## $ to_station_name   <chr> "Milwaukee Ave & Grand Ave", "Dearborn St & Van Bure~
+## $ usertype          <chr> "Subscriber", "Subscriber", "Subscriber", "Subscribe~
+## $ gender            <chr> "Male", "Female", "Female", "Male", "Male", "Female"~
+## $ birthyear         <dbl> 1989, 1990, 1994, 1993, 1994, 1983, 1984, 1990, 1995~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(Q42019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 704,054
+## Columns: 12
+## $ trip_id           <dbl> 25223640, 25223641, 25223642, 25223643, 25223644, 25~
+## $ start_time        <dttm> 2019-10-01 00:01:39, 2019-10-01 00:02:16, 2019-10-0~
+## $ end_time          <dttm> 2019-10-01 00:17:20, 2019-10-01 00:06:34, 2019-10-0~
+## $ bikeid            <dbl> 2215, 6328, 3003, 3275, 5294, 1891, 1061, 1274, 6011~
+## $ tripduration      <dbl> 940, 258, 850, 2350, 1867, 373, 1072, 1458, 1437, 83~
+## $ from_station_id   <dbl> 20, 19, 84, 313, 210, 156, 84, 156, 156, 336, 77, 19~
+## $ from_station_name <chr> "Sheffield Ave & Kingsbury St", "Throop (Loomis) St ~
+## $ to_station_id     <dbl> 309, 241, 199, 290, 382, 226, 142, 463, 463, 336, 50~
+## $ to_station_name   <chr> "Leavitt St & Armitage Ave", "Morgan St & Polk St", ~
+## $ usertype          <chr> "Subscriber", "Subscriber", "Subscriber", "Subscribe~
+## $ gender            <chr> "Male", "Male", "Female", "Male", "Male", "Female", ~
+## $ birthyear         <dbl> 1987, 1998, 1991, 1990, 1987, 1994, 1991, 1995, 1993~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(Q22019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1,108,163
+## Columns: 12
+## $ `01 - Rental Details Rental ID`                    <dbl> 22178529, 22178530,~
+## $ `01 - Rental Details Local Start Time`             <dttm> 2019-04-01 00:02:2~
+## $ `01 - Rental Details Local End Time`               <dttm> 2019-04-01 00:09:4~
+## $ `01 - Rental Details Bike ID`                      <dbl> 6251, 6226, 5649, 4~
+## $ `01 - Rental Details Duration In Seconds Uncapped` <dbl> 446, 1048, 252, 357~
+## $ `03 - Rental Start Station ID`                     <dbl> 81, 317, 283, 26, 2~
+## $ `03 - Rental Start Station Name`                   <chr> "Daley Center Plaza~
+## $ `02 - Rental End Station ID`                       <dbl> 56, 59, 174, 133, 1~
+## $ `02 - Rental End Station Name`                     <chr> "Desplaines St & Ki~
+## $ `User Type`                                        <chr> "Subscriber", "Subs~
+## $ `Member Gender`                                    <chr> "Male", "Female", "~
+## $ `05 - Member Details Member Birthday Year`         <dbl> 1975, 1984, 1990, 1~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(Q32019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1,640,718
+## Columns: 12
+## $ trip_id           <dbl> 23479388, 23479389, 23479390, 23479391, 23479392, 23~
+## $ start_time        <dttm> 2019-07-01 00:00:27, 2019-07-01 00:01:16, 2019-07-0~
+## $ end_time          <dttm> 2019-07-01 00:20:41, 2019-07-01 00:18:44, 2019-07-0~
+## $ bikeid            <dbl> 3591, 5353, 6180, 5540, 6014, 4941, 3770, 5442, 2957~
+## $ tripduration      <dbl> 1214, 1048, 1554, 1503, 1213, 310, 1248, 1550, 1583,~
+## $ from_station_id   <dbl> 117, 381, 313, 313, 168, 300, 168, 313, 43, 43, 511,~
+## $ from_station_name <chr> "Wilton Ave & Belmont Ave", "Western Ave & Monroe St~
+## $ to_station_id     <dbl> 497, 203, 144, 144, 62, 232, 62, 144, 195, 195, 84, ~
+## $ to_station_name   <chr> "Kimball Ave & Belmont Ave", "Western Ave & 21st St"~
+## $ usertype          <chr> "Subscriber", "Customer", "Customer", "Customer", "C~
+## $ gender            <chr> "Male", NA, NA, NA, NA, "Male", NA, NA, NA, NA, NA, ~
+## $ birthyear         <dbl> 1992, NA, NA, NA, NA, 1990, NA, NA, NA, NA, NA, NA, ~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Q22019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 12
+##   `01 - Rental Details Rental ID` 01 - Rental Details L~1 01 - Rental Details ~2
+##                             <dbl> <dttm>                  <dttm>                
+## 1                        22178529 2019-04-01 00:02:22     2019-04-01 00:09:48   
+## 2                        22178530 2019-04-01 00:03:02     2019-04-01 00:20:30   
+## 3                        22178531 2019-04-01 00:11:07     2019-04-01 00:15:19   
+## 4                        22178532 2019-04-01 00:13:01     2019-04-01 00:18:58   
+## 5                        22178533 2019-04-01 00:19:26     2019-04-01 00:36:13   
+## 6                        22178534 2019-04-01 00:19:39     2019-04-01 00:23:56   
+## # i abbreviated names: 1: `01 - Rental Details Local Start Time`,
+## #   2: `01 - Rental Details Local End Time`
+## # i 9 more variables: `01 - Rental Details Bike ID` <dbl>,
+## #   `01 - Rental Details Duration In Seconds Uncapped` <dbl>,
+## #   `03 - Rental Start Station ID` <dbl>,
+## #   `03 - Rental Start Station Name` <chr>, `02 - Rental End Station ID` <dbl>,
+## #   `02 - Rental End Station Name` <chr>, `User Type` <chr>, ...
+\end{verbatim}
+
+\hypertarget{rename-of-columns}{%
+\subsubsection{Rename of columns}\label{rename-of-columns}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Conversion to date time datatype}
+\FunctionTok{colnames}\NormalTok{(Q12019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "trip_id"           "start_time"        "end_time"         
+##  [4] "bikeid"            "tripduration"      "from_station_id"  
+##  [7] "from_station_name" "to_station_id"     "to_station_name"  
+## [10] "usertype"          "gender"            "birthyear"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(Q22019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "01 - Rental Details Rental ID"                   
+##  [2] "01 - Rental Details Local Start Time"            
+##  [3] "01 - Rental Details Local End Time"              
+##  [4] "01 - Rental Details Bike ID"                     
+##  [5] "01 - Rental Details Duration In Seconds Uncapped"
+##  [6] "03 - Rental Start Station ID"                    
+##  [7] "03 - Rental Start Station Name"                  
+##  [8] "02 - Rental End Station ID"                      
+##  [9] "02 - Rental End Station Name"                    
+## [10] "User Type"                                       
+## [11] "Member Gender"                                   
+## [12] "05 - Member Details Member Birthday Year"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(Q32019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "trip_id"           "start_time"        "end_time"         
+##  [4] "bikeid"            "tripduration"      "from_station_id"  
+##  [7] "from_station_name" "to_station_id"     "to_station_name"  
+## [10] "usertype"          "gender"            "birthyear"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(Q42019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "trip_id"           "start_time"        "end_time"         
+##  [4] "bikeid"            "tripduration"      "from_station_id"  
+##  [7] "from_station_name" "to_station_id"     "to_station_name"  
+## [10] "usertype"          "gender"            "birthyear"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(Q12020)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q22019 }\OtherTok{\textless{}{-}}\NormalTok{ Q22019 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}
+    \AttributeTok{trip\_id =} \StringTok{"01 {-} Rental Details Rental ID"}\NormalTok{,}
+    \AttributeTok{start\_time =} \StringTok{"01 {-} Rental Details Local Start Time"}\NormalTok{,}
+    \AttributeTok{end\_time =} \StringTok{"01 {-} Rental Details Local End Time"}\NormalTok{,}
+    \AttributeTok{bikeid =} \StringTok{"01 {-} Rental Details Bike ID"}\NormalTok{,}
+    \AttributeTok{tripduration =} \StringTok{"01 {-} Rental Details Duration In Seconds Uncapped"}\NormalTok{,}
+    \AttributeTok{from\_station\_id =} \StringTok{"03 {-} Rental Start Station ID"}\NormalTok{,}
+    \AttributeTok{from\_station\_name =} \StringTok{"03 {-} Rental Start Station Name"}\NormalTok{,}
+    \AttributeTok{to\_station\_id =} \StringTok{"02 {-} Rental End Station ID"}\NormalTok{,}
+    \AttributeTok{to\_station\_name =} \StringTok{"02 {-} Rental End Station Name"}\NormalTok{,}
+    \AttributeTok{usertype =} \StringTok{"User Type"}\NormalTok{,}
+    \AttributeTok{gender =} \StringTok{"Member Gender"}\NormalTok{,}
+    \AttributeTok{birthyear =} \StringTok{"05 {-} Member Details Member Birthday Year"}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(Q22019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "trip_id"           "start_time"        "end_time"         
+##  [4] "bikeid"            "tripduration"      "from_station_id"  
+##  [7] "from_station_name" "to_station_id"     "to_station_name"  
+## [10] "usertype"          "gender"            "birthyear"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q12020 }\OtherTok{\textless{}{-}}\NormalTok{ Q12020 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}
+    \AttributeTok{trip\_id =}\NormalTok{ ride\_id,}
+    \AttributeTok{start\_time =}\NormalTok{ started\_at,}
+    \AttributeTok{end\_time =}\NormalTok{ ended\_at,}
+    \AttributeTok{from\_station\_id =}\NormalTok{ start\_station\_id,}
+    \AttributeTok{from\_station\_name =}\NormalTok{ start\_station\_name,}
+    \AttributeTok{to\_station\_id =}\NormalTok{ end\_station\_id,}
+    \AttributeTok{to\_station\_name =}\NormalTok{ end\_station\_name,}
+    \AttributeTok{usertype =}\NormalTok{ member\_casual}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(Q12020)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "trip_id"           "rideable_type"     "start_time"       
+##  [4] "end_time"          "from_station_name" "from_station_id"  
+##  [7] "to_station_name"   "to_station_id"     "start_lat"        
+## [10] "start_lng"         "end_lat"           "end_lng"          
+## [13] "usertype"
+\end{verbatim}
+
+\hypertarget{conversion-of-data-to-datetime}{%
+\subsubsection{Conversion of data to
+datetime}\label{conversion-of-data-to-datetime}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Conversion to date time datatype}
+\NormalTok{Q12019}\SpecialCharTok{$}\NormalTok{start\_time }\OtherTok{\textless{}{-}} \FunctionTok{mdy\_hm}\NormalTok{(Q12019}\SpecialCharTok{$}\NormalTok{start\_time)}
+\NormalTok{Q12019}\SpecialCharTok{$}\NormalTok{end\_time }\OtherTok{\textless{}{-}} \FunctionTok{mdy\_hm}\NormalTok{(Q12019}\SpecialCharTok{$}\NormalTok{end\_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{analyze-the-columns}{%
+\subsubsection{Analyze the columns}\label{analyze-the-columns}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Gives us a pretty comprehensive summary of a dataset.}
+\CommentTok{\#skim\_without\_charts(Q12019)}
+\FunctionTok{skim}\NormalTok{(Q12019)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Data summary}\tabularnewline
+\toprule\noalign{}
+\endfirsthead
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Name & Q12019 \\
+Number of rows & 365069 \\
+Number of columns & 12 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Column type frequency: & \\
+character & 4 \\
+numeric & 6 \\
+POSIXct & 2 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Group variables & None \\
+\end{longtable}
+
+\textbf{Variable type: character}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.2368}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1316}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1842}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0526}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0526}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0789}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1184}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1447}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+empty
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+whitespace
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+from\_station\_name & 0 & 1.00 & 10 & 43 & 0 & 594 & 0 \\
+to\_station\_name & 0 & 1.00 & 10 & 43 & 0 & 600 & 0 \\
+usertype & 0 & 1.00 & 8 & 10 & 0 & 2 & 0 \\
+gender & 19711 & 0.95 & 4 & 6 & 0 & 2 & 0 \\
+\end{longtable}
+
+\textbf{Variable type: numeric}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1416}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0885}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1239}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1062}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0885}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0796}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0796}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0796}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0796}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0796}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0531}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+sd
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p75
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p100
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hist
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+trip\_id & 0 & 1.00 & 21960871.66 & 127175.00 & 21742443 & 21848765 &
+21961829 & 22071823 & 22178528 & ▇▇▇▇▇ \\
+bikeid & 0 & 1.00 & 3429.48 & 1923.32 & 1 & 1777 & 3489 & 5157 & 6471 &
+▆▆▆▆▇ \\
+tripduration & 0 & 1.00 & 1016.34 & 27913.51 & 61 & 326 & 524 & 866 &
+10628400 & ▇▁▁▁▁ \\
+from\_station\_id & 0 & 1.00 & 198.09 & 153.49 & 2 & 76 & 170 & 287 &
+665 & ▇▅▃▁▁ \\
+to\_station\_id & 0 & 1.00 & 198.58 & 154.47 & 2 & 76 & 168 & 287 & 665
+& ▇▅▃▁▁ \\
+birthyear & 18023 & 0.95 & 1981.67 & 11.25 & 1900 & 1975 & 1985 & 1990 &
+2003 & ▁▁▁▅▇ \\
+\end{longtable}
+
+\textbf{Variable type: POSIXct}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1308}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0935}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1869}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1869}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1869}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0841}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+start\_time & 0 & 1 & 2019-01-01 00:04:00 & 2019-03-31 23:53:00 &
+2019-02-25 07:52:00 & 83785 \\
+end\_time & 0 & 1 & 2019-01-01 00:11:00 & 2019-06-17 16:04:00 &
+2019-02-25 08:03:00 & 83743 \\
+\end{longtable}
+
+\hypertarget{combine-the-dataframes-in-one}{%
+\subsubsection{Combine the dataframes in
+one}\label{combine-the-dataframes-in-one}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove columns}
+\NormalTok{Q12020 }\OtherTok{\textless{}{-}}\NormalTok{ Q12020 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{rideable\_type, }\SpecialCharTok{{-}}\NormalTok{start\_lat, }\SpecialCharTok{{-}}\NormalTok{start\_lng, }\SpecialCharTok{{-}}\NormalTok{end\_lat, }\SpecialCharTok{{-}}\NormalTok{end\_lng)}
+\NormalTok{Q12019 }\OtherTok{\textless{}{-}}\NormalTok{ Q12019 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{bikeid)}
+\NormalTok{Q22019 }\OtherTok{\textless{}{-}}\NormalTok{ Q22019 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{bikeid)}
+\NormalTok{Q32019 }\OtherTok{\textless{}{-}}\NormalTok{ Q32019 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{bikeid)}
+\NormalTok{Q42019 }\OtherTok{\textless{}{-}}\NormalTok{ Q42019 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{bikeid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Add columns}
+\NormalTok{Q12020}\SpecialCharTok{$}\NormalTok{gender }\OtherTok{=} \ConstantTok{NA}
+\NormalTok{Q12020}\SpecialCharTok{$}\NormalTok{birthyear }\OtherTok{=} \ConstantTok{NA}
+\CommentTok{\#Calculate the value of the trip duration}
+\NormalTok{Q12020 }\OtherTok{\textless{}{-}}\NormalTok{ Q12020 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tripduration =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{difftime}\NormalTok{(end\_time, start\_time, }\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Merge the dataframes}
+\NormalTok{Cyclistic }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(Q12019, Q22019, Q32019, Q42019, Q12020)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{process}{%
+\subsection{Process}\label{process}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(Cyclistic)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 4,244,891
+## Columns: 11
+## $ trip_id           <chr> "21742443", "21742444", "21742445", "21742446", "217~
+## $ start_time        <dttm> 2019-01-01 00:04:00, 2019-01-01 00:08:00, 2019-01-0~
+## $ end_time          <dttm> 2019-01-01 00:11:00, 2019-01-01 00:15:00, 2019-01-0~
+## $ tripduration      <dbl> 390, 441, 829, 1783, 364, 216, 177, 100, 1727, 336, ~
+## $ from_station_id   <dbl> 199, 44, 15, 123, 173, 98, 98, 211, 150, 268, 299, 2~
+## $ from_station_name <chr> "Wabash Ave & Grand Ave", "State St & Randolph St", ~
+## $ to_station_id     <dbl> 84, 624, 644, 176, 35, 49, 49, 142, 148, 141, 295, 4~
+## $ to_station_name   <chr> "Milwaukee Ave & Grand Ave", "Dearborn St & Van Bure~
+## $ usertype          <chr> "Subscriber", "Subscriber", "Subscriber", "Subscribe~
+## $ gender            <chr> "Male", "Female", "Female", "Male", "Male", "Female"~
+## $ birthyear         <dbl> 1989, 1990, 1994, 1993, 1994, 1983, 1984, 1990, 1995~
+\end{verbatim}
+
+\hypertarget{assess-the-trip-duration-variable}{%
+\subsubsection{Assess the trip duration
+variable:}\label{assess-the-trip-duration-variable}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Check negative values}
+\NormalTok{Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tripduration}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 117 x 11
+##    trip_id  start_time          end_time            tripduration from_station_id
+##    <chr>    <dttm>              <dttm>                     <dbl>           <dbl>
+##  1 9461DFF~ 2020-02-28 10:09:43 2020-02-28 10:09:42           -1             675
+##  2 7942643~ 2020-03-18 11:43:09 2020-03-18 11:42:58          -11             675
+##  3 3CC0D87~ 2020-03-19 09:43:05 2020-03-19 09:42:51          -14             675
+##  4 32CAF6E~ 2020-03-12 10:00:46 2020-03-12 10:00:36          -10             675
+##  5 13BCB74~ 2020-03-27 14:59:51 2020-03-27 14:58:18          -93             675
+##  6 4EF350E~ 2020-03-19 09:37:17 2020-03-19 09:37:04          -13             675
+##  7 D96C52A~ 2020-03-12 09:27:31 2020-03-12 09:27:20          -11             675
+##  8 A749186~ 2020-03-17 12:22:18 2020-03-17 12:22:07          -11             675
+##  9 DC6D24F~ 2020-03-20 09:00:53 2020-03-20 09:00:40          -13             675
+## 10 C95725B~ 2020-03-18 12:24:02 2020-03-18 12:23:51          -11             675
+## # i 107 more rows
+## # i 6 more variables: from_station_name <chr>, to_station_id <dbl>,
+## #   to_station_name <chr>, usertype <chr>, gender <chr>, birthyear <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Check empty values}
+\NormalTok{Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\AttributeTok{tripduration=}\ConstantTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 0 x 11
+## # i 11 variables: trip_id <chr>, start_time <dttm>, end_time <dttm>,
+## #   tripduration <dbl>, from_station_id <dbl>, from_station_name <chr>,
+## #   to_station_id <dbl>, to_station_name <chr>, usertype <chr>, gender <chr>,
+## #   birthyear <dbl>
+\end{verbatim}
+
+Remove the negative values of the tripduration column
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tripduration}\SpecialCharTok{\textgreater{}=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculate-the-weekday-day_of_week}{%
+\subsubsection{Calculate the weekday:
+day\_of\_week}\label{calculate-the-weekday-day_of_week}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{weekdays}\NormalTok{(Cyclistic}\SpecialCharTok{$}\NormalTok{start\_time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Tuesday" "Tuesday" "Tuesday" "Tuesday" "Tuesday" "Tuesday"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{day\_of\_week =} \FunctionTok{weekdays}\NormalTok{(start\_time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Cyclistic)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 12
+##   trip_id  start_time          end_time            tripduration from_station_id
+##   <chr>    <dttm>              <dttm>                     <dbl>           <dbl>
+## 1 21742443 2019-01-01 00:04:00 2019-01-01 00:11:00          390             199
+## 2 21742444 2019-01-01 00:08:00 2019-01-01 00:15:00          441              44
+## 3 21742445 2019-01-01 00:13:00 2019-01-01 00:27:00          829              15
+## 4 21742446 2019-01-01 00:13:00 2019-01-01 00:43:00         1783             123
+## 5 21742447 2019-01-01 00:14:00 2019-01-01 00:20:00          364             173
+## 6 21742448 2019-01-01 00:15:00 2019-01-01 00:19:00          216              98
+## # i 7 more variables: from_station_name <chr>, to_station_id <dbl>,
+## #   to_station_name <chr>, usertype <chr>, gender <chr>, birthyear <dbl>,
+## #   day_of_week <chr>
+\end{verbatim}
+
+\hypertarget{calculate-the-starting-hour-start_hour}{%
+\subsubsection{Calculate the starting hour:
+start\_hour}\label{calculate-the-starting-hour-start_hour}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{hour}\NormalTok{(Cyclistic}\SpecialCharTok{$}\NormalTok{start\_time),}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+## [39] 0 0 0 1 1 1 1 1 1 1 1 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Cyclistic}\SpecialCharTok{$}\NormalTok{start\_time,}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "2019-01-01 00:04:00 UTC" "2019-01-01 00:08:00 UTC"
+##  [3] "2019-01-01 00:13:00 UTC" "2019-01-01 00:13:00 UTC"
+##  [5] "2019-01-01 00:14:00 UTC" "2019-01-01 00:15:00 UTC"
+##  [7] "2019-01-01 00:16:00 UTC" "2019-01-01 00:18:00 UTC"
+##  [9] "2019-01-01 00:18:00 UTC" "2019-01-01 00:19:00 UTC"
+## [11] "2019-01-01 00:20:00 UTC" "2019-01-01 00:21:00 UTC"
+## [13] "2019-01-01 00:23:00 UTC" "2019-01-01 00:23:00 UTC"
+## [15] "2019-01-01 00:23:00 UTC" "2019-01-01 00:24:00 UTC"
+## [17] "2019-01-01 00:24:00 UTC" "2019-01-01 00:24:00 UTC"
+## [19] "2019-01-01 00:25:00 UTC" "2019-01-01 00:29:00 UTC"
+## [21] "2019-01-01 00:29:00 UTC" "2019-01-01 00:29:00 UTC"
+## [23] "2019-01-01 00:29:00 UTC" "2019-01-01 00:30:00 UTC"
+## [25] "2019-01-01 00:33:00 UTC" "2019-01-01 00:34:00 UTC"
+## [27] "2019-01-01 00:38:00 UTC" "2019-01-01 00:38:00 UTC"
+## [29] "2019-01-01 00:40:00 UTC" "2019-01-01 00:41:00 UTC"
+## [31] "2019-01-01 00:45:00 UTC" "2019-01-01 00:45:00 UTC"
+## [33] "2019-01-01 00:46:00 UTC" "2019-01-01 00:47:00 UTC"
+## [35] "2019-01-01 00:48:00 UTC" "2019-01-01 00:51:00 UTC"
+## [37] "2019-01-01 00:55:00 UTC" "2019-01-01 00:58:00 UTC"
+## [39] "2019-01-01 00:58:00 UTC" "2019-01-01 00:58:00 UTC"
+## [41] "2019-01-01 00:58:00 UTC" "2019-01-01 01:02:00 UTC"
+## [43] "2019-01-01 01:03:00 UTC" "2019-01-01 01:04:00 UTC"
+## [45] "2019-01-01 01:04:00 UTC" "2019-01-01 01:04:00 UTC"
+## [47] "2019-01-01 01:06:00 UTC" "2019-01-01 01:09:00 UTC"
+## [49] "2019-01-01 01:10:00 UTC" "2019-01-01 01:12:00 UTC"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{start\_hour =} \FunctionTok{hour}\NormalTok{(start\_time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{ (start\_time, start\_hour)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4,244,774 x 2
+##    start_time          start_hour
+##    <dttm>                   <int>
+##  1 2019-01-01 00:04:00          0
+##  2 2019-01-01 00:08:00          0
+##  3 2019-01-01 00:13:00          0
+##  4 2019-01-01 00:13:00          0
+##  5 2019-01-01 00:14:00          0
+##  6 2019-01-01 00:15:00          0
+##  7 2019-01-01 00:16:00          0
+##  8 2019-01-01 00:18:00          0
+##  9 2019-01-01 00:18:00          0
+## 10 2019-01-01 00:19:00          0
+## # i 4,244,764 more rows
+\end{verbatim}
+
+\hypertarget{replace-the-values-of-column-usertype}{%
+\subsubsection{Replace the values of column
+usertype}\label{replace-the-values-of-column-usertype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(Cyclistic}\SpecialCharTok{$}\NormalTok{usertype)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Subscriber" "Customer"   "member"     "casual"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic}\SpecialCharTok{$}\NormalTok{usertype[Cyclistic}\SpecialCharTok{$}\NormalTok{usertype }\SpecialCharTok{==} \StringTok{"member"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Subscriber"}
+\NormalTok{Cyclistic}\SpecialCharTok{$}\NormalTok{usertype[Cyclistic}\SpecialCharTok{$}\NormalTok{usertype }\SpecialCharTok{==} \StringTok{"casual"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Customer"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(Cyclistic}\SpecialCharTok{$}\NormalTok{usertype)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Subscriber" "Customer"
+\end{verbatim}
+
+\hypertarget{analyze}{%
+\subsection{Analyze}\label{analyze}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skim}\NormalTok{(Cyclistic)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Data summary}\tabularnewline
+\toprule\noalign{}
+\endfirsthead
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Name & Cyclistic \\
+Number of rows & 4244774 \\
+Number of columns & 13 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Column type frequency: & \\
+character & 6 \\
+numeric & 5 \\
+POSIXct & 2 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Group variables & None \\
+\end{longtable}
+
+\textbf{Variable type: character}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.2368}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1316}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1842}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0526}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0526}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0789}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1184}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1447}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+empty
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+whitespace
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+trip\_id & 0 & 1.00 & 7 & 16 & 0 & 4244774 & 0 \\
+from\_station\_name & 0 & 1.00 & 5 & 43 & 0 & 643 & 0 \\
+to\_station\_name & 0 & 1.00 & 5 & 43 & 0 & 644 & 0 \\
+usertype & 0 & 1.00 & 8 & 10 & 0 & 2 & 0 \\
+gender & 985976 & 0.77 & 4 & 6 & 0 & 2 & 0 \\
+day\_of\_week & 0 & 1.00 & 6 & 9 & 0 & 7 & 0 \\
+\end{longtable}
+
+\textbf{Variable type: numeric}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1739}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1087}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1522}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0870}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0978}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0543}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0543}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0543}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0543}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0978}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0652}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+sd
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p75
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p100
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hist
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+tripduration & 0 & 1.00 & 1437.84 & 30665.98 & 0 & 401 & 690 & 1249 &
+10628400 & ▇▁▁▁▁ \\
+from\_station\_id & 0 & 1.00 & 202.47 & 156.81 & 1 & 77 & 174 & 289 &
+675 & ▇▆▃▁▁ \\
+to\_station\_id & 0 & 1.00 & 203.30 & 156.95 & 1 & 77 & 174 & 291 & 675
+& ▇▆▃▁▁ \\
+birthyear & 965521 & 0.77 & 1984.07 & 10.87 & 1759 & 1979 & 1987 & 1992
+& 2014 & ▁▁▁▁▇ \\
+start\_hour & 0 & 1.00 & 13.72 & 4.71 & 0 & 10 & 15 & 17 & 23 & ▁▅▃▇▂ \\
+\end{longtable}
+
+\textbf{Variable type: POSIXct}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1308}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0935}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1869}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1869}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1869}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0841}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+start\_time & 0 & 1 & 2019-01-01 00:04:00 & 2020-03-31 23:51:34 &
+2019-08-05 11:52:38 & 3446007 \\
+end\_time & 0 & 1 & 2019-01-01 00:11:00 & 2020-05-19 20:10:34 &
+2019-08-05 12:23:20 & 3383143 \\
+\end{longtable}
+
+Unusual ride\_length values (excessively high):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tripduration}\SpecialCharTok{/}\DecValTok{3600} \SpecialCharTok{\textgreater{}} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 86 x 13
+##    trip_id  start_time          end_time            tripduration from_station_id
+##    <chr>    <dttm>              <dttm>                     <dbl>           <dbl>
+##  1 21845123 2019-01-21 23:07:00 2019-03-28 08:30:00      5646180             390
+##  2 21894590 2019-02-07 16:54:00 2019-04-04 23:45:00      4859470              42
+##  3 21900340 2019-02-08 21:59:00 2019-03-26 09:47:00      3926850             182
+##  4 21920842 2019-02-14 14:44:00 2019-06-17 16:04:00     10628400             213
+##  5 22039457 2019-03-12 18:48:00 2019-05-22 08:15:00      6096430             438
+##  6 22201118 2019-04-03 09:44:30 2019-05-28 11:18:28      4757640             118
+##  7 22362106 2019-04-19 08:27:02 2019-06-09 17:40:11      4439590              18
+##  8 22521035 2019-05-04 00:26:46 2019-06-25 07:47:12      4519230              69
+##  9 23648641 2019-07-09 17:28:05 2019-10-04 18:55:47      7522062             417
+## 10 23660988 2019-07-10 09:59:28 2019-09-23 17:48:32      6508144             395
+## # i 76 more rows
+## # i 8 more variables: from_station_name <chr>, to_station_id <dbl>,
+## #   to_station_name <chr>, usertype <chr>, gender <chr>, birthyear <dbl>,
+## #   day_of_week <chr>, start_hour <int>
+\end{verbatim}
+
+\hypertarget{number-of-rides-per-day-and-usertype}{%
+\subsubsection{Number of rides per day and
+usertype}\label{number-of-rides-per-day-and-usertype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic}\SpecialCharTok{$}\NormalTok{day\_of\_week }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(Cyclistic}\SpecialCharTok{$}\NormalTok{day\_of\_week, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{))}
+\FunctionTok{ggplot}\NormalTok{(Cyclistic, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{day\_of\_week, }\AttributeTok{fill=}\NormalTok{usertype)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Day of the week"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Number of rides"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{label=}\NormalTok{scales}\SpecialCharTok{::}\NormalTok{comma)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data-Analysis-process_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\hypertarget{average-trip-duration-in-hours-per-usertype}{%
+\subsubsection{Average trip duration (in hours) per
+usertype}\label{average-trip-duration-in-hours-per-usertype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(start\_time, usertype, tripduration, day\_of\_week)}
+\CommentTok{\# Convert the variable from Datetime to Date}
+\NormalTok{Cyclistic\_filtered}\SpecialCharTok{$}\NormalTok{start\_time }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(Cyclistic\_filtered}\SpecialCharTok{$}\NormalTok{start\_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_Subscriber }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic\_filtered }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(usertype}\SpecialCharTok{==}\StringTok{"Subscriber"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(start\_time, usertype, day\_of\_week) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_tripduration =} \FunctionTok{mean}\NormalTok{(tripduration)}\SpecialCharTok{/}\DecValTok{3600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'start_time', 'usertype'. You can override
+## using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_Customer }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic\_filtered }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(usertype}\SpecialCharTok{==}\StringTok{"Customer"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(start\_time, usertype, day\_of\_week) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_tripduration =} \FunctionTok{mean}\NormalTok{(tripduration)}\SpecialCharTok{/}\DecValTok{3600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'start_time', 'usertype'. You can override
+## using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Cyclistic\_Subscriber, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{start\_time, }\AttributeTok{y=}\NormalTok{mean\_tripduration)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Date"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Average trip duration (in hours)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data-Analysis-process_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Cyclistic\_Customer, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{start\_time, }\AttributeTok{y=}\NormalTok{mean\_tripduration)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Date"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Average trip duration (in hours)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data-Analysis-process_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(usertype, tripduration, day\_of\_week)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_day\_Subscriber }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic\_filtered }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(usertype}\SpecialCharTok{==}\StringTok{"Subscriber"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(day\_of\_week) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_tripduration =} \FunctionTok{mean}\NormalTok{(tripduration)}\SpecialCharTok{/}\DecValTok{3600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_day\_Customer }\OtherTok{\textless{}{-}}\NormalTok{ Cyclistic\_filtered }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(usertype}\SpecialCharTok{==}\StringTok{"Customer"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(day\_of\_week) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_tripduration =} \FunctionTok{mean}\NormalTok{(tripduration)}\SpecialCharTok{/}\DecValTok{3600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_day\_Subscriber}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 2
+##   day_of_week mean_tripduration
+##   <fct>                   <dbl>
+## 1 Monday                  0.235
+## 2 Tuesday                 0.230
+## 3 Wednesday               0.226
+## 4 Thursday                0.225
+## 5 Friday                  0.229
+## 6 Saturday                0.270
+## 7 Sunday                  0.257
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cyclistic\_day\_Customer}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 2
+##   day_of_week mean_tripduration
+##   <fct>                   <dbl>
+## 1 Monday                  0.923
+## 2 Tuesday                 0.982
+## 3 Wednesday               1.02 
+## 4 Thursday                1.05 
+## 5 Friday                  1.04 
+## 6 Saturday                0.928
+## 7 Sunday                  0.989
+\end{verbatim}
+
+\hypertarget{number-of-rides-per-hour-and-usertype}{%
+\subsubsection{Number of rides per hour and
+usertype}\label{number-of-rides-per-hour-and-usertype}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Cyclistic, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{start\_hour, }\AttributeTok{fill=}\NormalTok{usertype)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Starting hour"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Number of rides"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{label=}\NormalTok{scales}\SpecialCharTok{::}\NormalTok{comma)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data-Analysis-process_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Cyclistic, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{start\_hour, }\AttributeTok{fill=}\NormalTok{usertype)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{day\_of\_week) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Starting hour"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Number of rides"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{label=}\NormalTok{scales}\SpecialCharTok{::}\NormalTok{comma)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Data-Analysis-process_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+\end{document}
